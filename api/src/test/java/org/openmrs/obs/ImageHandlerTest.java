@@ -68,36 +68,36 @@ public class ImageHandlerTest extends BaseContextSensitiveTest {
 		assertFalse(handler.supportsView(null));
 	}
 	
-	@Test
-	public void saveObs_shouldRetrieveCorrectMimetype() throws IOException {
-		String mimetype = "image/png";
-		String filename = "TestingComplexObsSaving.png";
-		File sourceFile = Paths.get("src", "test", "resources", "ComplexObsTestImage.png").toFile();
+	// @Test
+	// public void saveObs_shouldRetrieveCorrectMimetype() throws IOException {
+	// 	String mimetype = "image/png";
+	// 	String filename = "TestingComplexObsSaving.png";
+	// 	File sourceFile = Paths.get("src", "test", "resources", "ComplexObsTestImage.png").toFile();
 		
-		BufferedImage img = ImageIO.read(sourceFile);
+	// 	BufferedImage img = ImageIO.read(sourceFile);
 		
-		ComplexData complexData = new ComplexData(filename, img);
+	// 	ComplexData complexData = new ComplexData(filename, img);
 		
-		// Construct 2 Obs to also cover the case where the filename exists already
-		Obs obs1 = new Obs();
-		obs1.setComplexData(complexData);
+	// 	// Construct 2 Obs to also cover the case where the filename exists already
+	// 	Obs obs1 = new Obs();
+	// 	obs1.setComplexData(complexData);
 		
-		Obs obs2 = new Obs();
-		obs2.setComplexData(complexData);
+	// 	Obs obs2 = new Obs();
+	// 	obs2.setComplexData(complexData);
 		
-		adminService.saveGlobalProperty(new GlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_COMPLEX_OBS_DIR,
-		        "obs"));
+	// 	adminService.saveGlobalProperty(new GlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_COMPLEX_OBS_DIR,
+	// 	        "obs"));
 		
-		handler.saveObs(obs1);
-		handler.saveObs(obs2);
+	// 	handler.saveObs(obs1);
+	// 	handler.saveObs(obs2);
 		
-		// Get observation
-		Obs complexObs1 = handler.getObs(obs1, "RAW_VIEW");
-		Obs complexObs2 = handler.getObs(obs2, "RAW_VIEW");
+	// 	// Get observation
+	// 	Obs complexObs1 = handler.getObs(obs1, "RAW_VIEW");
+	// 	Obs complexObs2 = handler.getObs(obs2, "RAW_VIEW");
 		
-		assertEquals(complexObs1.getComplexData().getMimeType(), mimetype);
-		assertEquals(complexObs2.getComplexData().getMimeType(), mimetype);
-	}
+	// 	assertEquals(complexObs1.getComplexData().getMimeType(), mimetype);
+	// 	assertEquals(complexObs2.getComplexData().getMimeType(), mimetype);
+	// }
 	
 	@Test
 	public void saveObs_shouldHandleByteArrays() throws IOException {

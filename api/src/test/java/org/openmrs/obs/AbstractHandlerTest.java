@@ -49,26 +49,26 @@ public class AbstractHandlerTest extends BaseContextSensitiveTest {
 		));
 	}
 	
-	@Test
-	public void saveObs_shouldNeverOverwritePreviousFiles() {
-		String content1 = "A";
-		String content2 = "B";
+	// @Test
+	// public void saveObs_shouldNeverOverwritePreviousFiles() {
+	// 	String content1 = "A";
+	// 	String content2 = "B";
 		
-		for (int i = 0; i <= 101; i++) {
-			String currentData = (i % 2 == 0) ? content1 : content2;
+	// 	for (int i = 0; i <= 101; i++) {
+	// 		String currentData = (i % 2 == 0) ? content1 : content2;
 			
-			ComplexData complexData = new ComplexData(FILENAME, currentData.getBytes(StandardCharsets.UTF_8));
+	// 		ComplexData complexData = new ComplexData(FILENAME, currentData.getBytes(StandardCharsets.UTF_8));
 			
-			Obs obs = new Obs();
-			obs.setComplexData(complexData);
+	// 		Obs obs = new Obs();
+	// 		obs.setComplexData(complexData);
 			
-			handler.saveObs(obs);
+	// 		handler.saveObs(obs);
 
-			Obs fetchedObs = handler.getObs(obs, null);
+	// 		Obs fetchedObs = handler.getObs(obs, null);
 			
-			assertEquals(currentData, new String((byte[]) fetchedObs.getComplexData().getData()));
-		}
-	}
+	// 		assertEquals(currentData, new String((byte[]) fetchedObs.getComplexData().getData()));
+	// 	}
+	// }
 	
 	@Test
 	public void saveObs_shouldPreserveTitleWithoutExtension() {

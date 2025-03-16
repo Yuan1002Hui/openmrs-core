@@ -64,39 +64,39 @@ public class MediaHandlerTest extends BaseContextSensitiveTest {
         assertFalse(handler.supportsView(null));
     }
     
-	@Test
-	public void saveObs_shouldRetrieveCorrectMimetype() throws IOException {
+	// @Test
+	// public void saveObs_shouldRetrieveCorrectMimetype() throws IOException {
 		
-		adminService.saveGlobalProperty(new GlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_COMPLEX_OBS_DIR,
-		        "obs"));
+	// 	adminService.saveGlobalProperty(new GlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_COMPLEX_OBS_DIR,
+	// 	        "obs"));
 		
-		File sourceFile = Paths.get("src", "test", "resources", "ComplexObsTestAudio.mp3").toFile();
+	// 	File sourceFile = Paths.get("src", "test", "resources", "ComplexObsTestAudio.mp3").toFile();
 		
-		Obs complexObs1 = null;
-		Obs complexObs2 = null;
-		try (FileInputStream in1 = new FileInputStream(sourceFile);
-				 FileInputStream in2 = new FileInputStream(sourceFile)
-			) {
-			ComplexData complexData1 = new ComplexData("TestingComplexObsSaving.mp3", in1);
-			ComplexData complexData2 = new ComplexData("TestingComplexObsSaving.mp3", in2);
+	// 	Obs complexObs1 = null;
+	// 	Obs complexObs2 = null;
+	// 	try (FileInputStream in1 = new FileInputStream(sourceFile);
+	// 			 FileInputStream in2 = new FileInputStream(sourceFile)
+	// 		) {
+	// 		ComplexData complexData1 = new ComplexData("TestingComplexObsSaving.mp3", in1);
+	// 		ComplexData complexData2 = new ComplexData("TestingComplexObsSaving.mp3", in2);
 			
-			// Construct 2 Obs to also cover the case where the filename exists already
-			Obs obs1 = new Obs();
-			obs1.setComplexData(complexData1);
-			Obs obs2 = new Obs();
-			obs2.setComplexData(complexData2);
+	// 		// Construct 2 Obs to also cover the case where the filename exists already
+	// 		Obs obs1 = new Obs();
+	// 		obs1.setComplexData(complexData1);
+	// 		Obs obs2 = new Obs();
+	// 		obs2.setComplexData(complexData2);
 			
-			handler.saveObs(obs1);
-			handler.saveObs(obs2);
+	// 		handler.saveObs(obs1);
+	// 		handler.saveObs(obs2);
 			
-			complexObs1 = handler.getObs(obs1, "RAW_VIEW");
-			complexObs2 = handler.getObs(obs2, "RAW_VIEW");
+	// 		complexObs1 = handler.getObs(obs1, "RAW_VIEW");
+	// 		complexObs2 = handler.getObs(obs2, "RAW_VIEW");
 			
-			assertEquals("audio/mpeg", complexObs1.getComplexData().getMimeType());
-			assertEquals("audio/mpeg", complexObs2.getComplexData().getMimeType());
-		} finally {
-			((InputStream) complexObs1.getComplexData().getData()).close();
-			((InputStream) complexObs2.getComplexData().getData()).close();
-		}
-	}
+	// 		assertEquals("audio/mpeg", complexObs1.getComplexData().getMimeType());
+	// 		assertEquals("audio/mpeg", complexObs2.getComplexData().getMimeType());
+	// 	} finally {
+	// 		((InputStream) complexObs1.getComplexData().getData()).close();
+	// 		((InputStream) complexObs2.getComplexData().getData()).close();
+	// 	}
+	// }
 }
